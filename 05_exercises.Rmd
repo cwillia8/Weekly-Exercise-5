@@ -155,9 +155,14 @@ ggplotly(Cum_harvest_graph)
   transition_states(departure_station) 
 
 anim_save("smalltrains.gif")
-knitr::include_graphics("smalltrains.gif") 
+ 
 
 ```
+
+```{r}
+knitr::include_graphics("smalltrains.gif")
+```
+
 
 ## Garden data
 
@@ -187,6 +192,10 @@ garden_harvest %>%
   transition_reveal(date)
 
 anim_save("gardenharvest.gif")
+
+```
+
+```{r}
 knitr::include_graphics("gardenharvest.gif")
 ```
 
@@ -228,8 +237,13 @@ ggmap(mallorca_map) +
   transition_reveal(time) 
 
 anim_save("lisabiking.gif")
-knitr::include_graphics("lisabiking.gif")
+
 ``` 
+  
+```{r}
+knitr::include_graphics("lisabiking.gif")
+```
+  
   
 I much prefer this map over its static counterpart. If you were only to look at the static map (and not the data set), then you wouldn't have a clear understanding of where Lisa started and finished. This is much more obious on the animated version.  
   
@@ -264,8 +278,13 @@ ggmap(map_panama) +
   transition_reveal(time) 
 
 anim_save("triathalon.gif")
+
+```
+  
+```{r}
 knitr::include_graphics("triathalon.gif")
 ```
+  
   
 ## COVID-19 data
 
@@ -304,9 +323,14 @@ animate(covid_gif,
         duration = 30)
 
 anim_save("covidcasesbystate.gif")
-knitr::include_graphics("covidcasesbystate.gif")
+
   
 ```
+  
+```{r}
+knitr::include_graphics("covidcasesbystate.gif")
+```
+  
   
 Florida, Texas, and Florida all remain near the top for the entirety of the animation (Although this may simply be because of their large populations.) It also seems that the spread of covid stopped being exponential in most states (meaning the growth rate gradually grew more constant) between July and August of 2020.  
   
@@ -355,9 +379,14 @@ animate(covid_19.gif,
         duration = 10)
   
 anim_save("covid_cases_by_state_map.gif")
-knitr::include_graphics("covid_cases_by_state_map.gif")
+
   
 ```
+
+```{r}
+knitr::include_graphics("covid_cases_by_state_map.gif")
+```
+
 
 Both coastlines seem to have smaller total case counts per capita then the central United States. It also becomes clear that although it wasn't well represented in the previous graph, states with lower populations were hit just as hard. 
 
