@@ -138,7 +138,7 @@ ggplotly(Cum_harvest_graph)
   2. Use animation to tell an interesting story with the `small_trains` dataset that contains data from the SNCF (National Society of French Railways). These are Tidy Tuesday data! Read more about it [here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-02-26).
 
 ```{r, eval = FALSE}
-small_trains %>% 
+ small_trains %>% 
   filter(year == "2017") %>% 
   group_by(departure_station, month) %>% 
   summarize(total_trips_for_month = sum(total_num_trips),
@@ -152,8 +152,10 @@ small_trains %>%
        subtitle = "Departure Station: {closest_state}",
        x = "",
        y = "") +
-  transition_states(departure_station)
-  
+  transition_states(departure_station) 
+
+anim_save("smalltrains.gif")
+knitr::include_graphics("smalltrains.gif") 
 
 ```
 
@@ -183,6 +185,9 @@ garden_harvest %>%
        subtitle = "Date: {frame_along}", x = "", y = "") + 
   theme(legend.position = "none") + 
   transition_reveal(date)
+
+anim_save("gardenharvest.gif")
+knitr::include_graphics("gardenharvest.gif")
 ```
 
 
@@ -220,8 +225,10 @@ ggmap(mallorca_map) +
   labs(title = "Lisa's Bike Trip Through Mallorca", subtitle = "Time: {frame_along}",
        x = "",
        y = "") +
-  transition_reveal(time)
+  transition_reveal(time) 
 
+anim_save("lisabiking.gif")
+knitr::include_graphics("lisabiking.gif")
 ``` 
   
 I much prefer this map over its static counterpart. If you were only to look at the static map (and not the data set), then you wouldn't have a clear understanding of where Lisa started and finished. This is much more obious on the animated version.  
@@ -254,7 +261,10 @@ ggmap(map_panama) +
   theme_map() + 
   scale_color_viridis_d() + 
   theme(legend.background = element_blank()) + 
-  transition_reveal(time)
+  transition_reveal(time) 
+
+anim_save("triathalon.gif")
+knitr::include_graphics("triathalon.gif")
 ```
   
 ## COVID-19 data
@@ -294,6 +304,7 @@ animate(covid_gif,
         duration = 30)
 
 anim_save("covidcasesbystate.gif")
+knitr::include_graphics("covidcasesbystate.gif")
   
 ```
   
@@ -344,7 +355,7 @@ animate(covid_19.gif,
         duration = 10)
   
 anim_save("covid_cases_by_state_map.gif")
-
+knitr::include_graphics("covid_cases_by_state_map.gif")
   
 ```
 
