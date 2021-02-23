@@ -12,7 +12,7 @@ output:
 
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
 ```
 
 ```{r libraries}
@@ -224,6 +224,7 @@ ggmap(mallorca_map) +
 
 ``` 
   
+I much prefer this map over its static counterpart. If you were only to look at the static map (and not the data set), then you wouldn't have a clear understanding of where Lisa started and finished. This is much more obious on the animated version.  
   
   5. In this exercise, you get to meet my sister, Heather! She is a proud Mac grad, currently works as a Data Scientist at 3M where she uses R everyday, and for a few years (while still holding a full-time job) she was a pro triathlete. You are going to map one of her races. The data from each discipline of the Ironman 70.3 Pan Am championships, Panama is in a separate file - `panama_swim`, `panama_bike`, and `panama_run`. Create a similar map to the one you created with my cycling data. You will need to make some small changes: 1. combine the files (HINT: `bind_rows()`, 2. make the leading dot a different color depending on the event (for an extra challenge, make it a different image using `geom_image()!), 3. CHALLENGE (optional): color by speed, which you will need to compute on your own from the data. You can read Heather's race report [here](https://heatherlendway.com/2016/02/10/ironman-70-3-pan-american-championships-panama-race-report/). She is also in the Macalester Athletics [Hall of Fame](https://athletics.macalester.edu/honors/hall-of-fame/heather-lendway/184) and still has records at the pool. 
   
@@ -240,8 +241,8 @@ map_panama <- get_stamenmap(
 ggmap(map_panama) + 
   geom_point(data = total_race,
              aes(x = lon,
-                 y = lat),
-             color = "blue",
+                 y = lat,
+             color = event),
              size = 3) + 
   geom_path(data = total_race,
             aes(x = lon,
@@ -251,7 +252,7 @@ ggmap(map_panama) +
   labs(title = "Ironman 70.3 Pan Am Championships", 
        subtitle = "Time: {frame_along}") + 
   theme_map() + 
-  scale_color_viridis_c(option = "magma") + 
+  scale_color_viridis_d() + 
   theme(legend.background = element_blank()) + 
   transition_reveal(time)
 ```
@@ -266,7 +267,7 @@ ggmap(map_panama) +
   * Use the `animate()` function to have 200 frames in your animation and make it 30 seconds long. 
   * Comment on what you observe.
   
-```{r}
+```{r, eval = FALSE}
 Covid_by_state <- covid19 %>% 
   group_by(state) %>% 
   mutate(seven_day_lag = lag(cases, n = 7, order_by = date)) %>% 
@@ -296,6 +297,7 @@ anim_save("covidcasesbystate.gif")
   
 ```
   
+Florida, Texas, and Florida all remain near the top for the entirety of the animation (Although this may simply be because of their large populations.) It also seems that the spread of covid stopped being exponential in most states (meaning the growth rate gradually grew more constant) between July and August of 2020.  
   
   7. In this exercise you will animate a map of the US, showing how cumulative COVID-19 cases per 10,000 residents has changed over time. This is similar to exercises 11 & 12 from the previous exercises, with the added animation! So, in the end, you should have something like the static map you made there, but animated over all the days. The code below gives the population estimates for each state and loads the `states_map` data. Here is a list of details you should include in the plot:
   
@@ -346,6 +348,8 @@ anim_save("covid_cases_by_state_map.gif")
   
 ```
 
+Both coastlines seem to have smaller total case counts per capita then the central United States. It also becomes clear that although it wasn't well represented in the previous graph, states with lower populations were hit just as hard. 
+
 ## Your first `shiny` app (for next week!)
 
 NOT DUE THIS WEEK! If any of you want to work ahead, this will be on next week's exercises.
@@ -355,6 +359,8 @@ NOT DUE THIS WEEK! If any of you want to work ahead, this will be on next week's
 ## GitHub link
 
   9. Below, provide a link to your GitHub page with this set of Weekly Exercises. Specifically, if the name of the file is 05_exercises.Rmd, provide a link to the 05_exercises.md file, which is the one that will be most readable on GitHub. If that file isn't very readable, then provide a link to your main GitHub page.
+
+[Github link](https://github.com/cwillia8/Weekly-Exercise-5)
 
 
 **DID YOU REMEMBER TO UNCOMMENT THE OPTIONS AT THE TOP?**
